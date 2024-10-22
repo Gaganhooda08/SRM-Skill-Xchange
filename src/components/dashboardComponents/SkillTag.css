@@ -1,0 +1,18 @@
+.skill-tag {
+    display: inline-block;
+    background-color: #e0f7fa; /* Light cyan background */
+    color: #00796b; /* Teal text color */
+    padding: 5px 10px;
+    border-radius: 12px;
+    margin: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #00796b; /* Teal border */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .skill-tag:hover {
+    background-color: #b2ebf2; /* Darker cyan on hover */
+    color: white; /* White text on hover */
+  }
+  

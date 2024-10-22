@@ -1,102 +1,98 @@
-/* Global Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.homepage {
+  font-family: Arial, sans-serif;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-h1,
-h2,
-p {
-  margin-bottom: 1rem;
-}
-
-/* Header (Hero Section) */
 .hero {
-  background-image: url("../assets/srm_images.jpg"); /* Replace with an actual image */
+  background-image: url("src/assets/srmImage.jpg");
   background-size: cover;
-  background-position: center;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-repeat: no-repeat;
+  color: rgb(0, 0, 0);
+  text-align: justify;
+  padding: 100px 20px;
+  height: 100vh;
 }
 
 .hero-text {
-  text-align: center;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 2rem;
-  border-radius: 8px;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  animation: fadeIn 2s ease-in;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .cta-btn {
-  padding: 0.8rem 2rem;
-  background-color: #0066ff;
+  background-color: #ff5733;
   color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
+  text-decoration: none;
   transition: background-color 0.3s;
+  max-width: 200px;
 }
 
 .cta-btn:hover {
-  background-color: #0052cc;
+  background-color: #c70039;
 }
 
-/* Features Section */
 .features {
-  display: flex;
-  justify-content: space-around;
-  padding: 3rem 1rem;
-  background-color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f4f4f4;
 }
 
 .feature-card {
-  background-color: #f8f8f8;
-  padding: 2rem;
-  border-radius: 8px;
-  text-align: center;
+  display: inline-block;
   width: 30%;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition: transform 0.3s;
 }
 
-.feature-card h2 {
-  color: #0066ff;
-  margin-bottom: 1rem;
+.feature-card:hover {
+  transform: scale(1.05);
 }
 
-.feature-card p {
-  font-size: 1rem;
-  color: #555;
+.testimonials {
+  text-align: center;
+  padding: 50px 20px;
 }
 
-/* Footer */
+.testimonial {
+  margin: 20px;
+  font-style: italic;
+}
+
 .footer {
   text-align: center;
-  padding: 1rem;
-  background-color: #0066ff;
+  padding: 20px;
+  background-color: #333;
   color: white;
 }
 
-.footer p {
-  margin: 0;
+.footer .social-links a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.footer .social-links a:hover {
+  text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

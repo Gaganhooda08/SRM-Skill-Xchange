@@ -1,45 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
 import "./HomePage.css";
-import SignIn from "./auth/SignIn";
-import StudentDashboard from "./StudentDashboard";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUsers,
+  faProjectDiagram,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 
 const HomePage = () => {
-  const [getStarted, setGetStarted] = useState(false);
-  const [Dashboard, setDashboard] = useState(false);
-
-  if (Dashboard) {
-    return <StudentDashboard />;
-  }
-  if (getStarted) {
-    return <SignIn />;
-  }
   return (
     <div className="homepage">
       <header className="hero">
         <div className="hero-text">
-          <h1>SRM Skill Xchange</h1>
-          <p>Learn, Share, and Grow together with the SRM community!</p>
-          <Link
-            className="cta-btn"
-            to="/signin"
-          >
+          <h1 style={{ fontSize: "80px" }}>SRM Skill Xchange</h1>
+          <p style={{ fontSize: "30px" }}>
+            Learn, Share, and Grow together with the SRM community!
+          </p>
+          <Link style={{ fontSize: "20px"}} className="cta-btn" to="/signin">
             Get Started
           </Link>
         </div>
       </header>
 
       <section className="features">
+        <h2>Why Choose Us?</h2>
         <div className="feature-card">
-          <h2>Find a Mentor</h2>
+          <FontAwesomeIcon icon={faUsers} size="3x" />
+          <h3>Find a Mentor</h3>
           <p>Connect with skilled mentors and enhance your abilities.</p>
         </div>
         <div className="feature-card">
-          <h2>Share Your Skills</h2>
+          <FontAwesomeIcon icon={faStar} size="3x" />
+          <h3>Share Your Skills</h3>
           <p>Offer your expertise to help others learn and grow.</p>
         </div>
         <div className="feature-card">
-          <h2>Collaborate on Projects</h2>
+          <FontAwesomeIcon icon={faProjectDiagram} size="3x" />
+          <h3>Collaborate on Projects</h3>
           <p>
             Work together on real-world projects and develop teamwork skills.
           </p>
@@ -48,6 +46,22 @@ const HomePage = () => {
 
       <footer className="footer">
         <p>&copy; 2024 SRM Skill Exchange. All rights reserved.</p>
+        <div className="social-links">
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram
+          </a>
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </div>
       </footer>
     </div>
   );

@@ -1,0 +1,51 @@
+/* Overview.css */
+
+.overview-container {
+  padding: 20px;
+  background-color: #f4f4f4; /* Light background for contrast */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 20px 0; /* Space between sections */
+}
+
+.overview-title {
+  font-size: 2rem; /* Larger title size */
+  margin-bottom: 10px; /* Space below the title */
+  color: #333; /* Dark text for better readability */
+}
+
+.overview-intro {
+  font-size: 1.1rem; /* Slightly larger than default size */
+  margin-bottom: 20px; /* Space below the intro text */
+  color: #555; /* Grey color for a softer look */
+}
+
+.stats {
+  display: flex; /* Align cards in a row */
+  justify-content: space-between; /* Space between cards */
+  gap: 20px; /* Space between individual cards */
+}
+
+.stat-card {
+  flex: 1; /* Each card takes equal space */
+  background-color: #fff; /* White background for cards */
+  padding: 20px; /* Inner padding for content */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.stat-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.stat-title {
+  font-size: 1.5rem; /* Title size within cards */
+  color: #007bff; /* Primary color for titles */
+  margin-bottom: 10px; /* Space below titles */
+}
+
+.stat-value {
+  font-size: 1.2rem; /* Size of the values */
+  color: #333; /* Dark text for readability */
+}
