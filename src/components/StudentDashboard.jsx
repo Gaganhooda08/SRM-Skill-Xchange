@@ -1,9 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Dashboard.css"; // CSS for the dashboard
-import { auth } from "../firebase/firebase";
+import { auth, db } from "../firebase/firebase"; // Firestore and Auth instance
+import { doc, getDoc } from "firebase/firestore"; // Firestore methods
 
 const StudentDashboard = () => {
   const [view, setView] = useState("overview"); // State to switch views (Overview, Profile, etc.)
+  const [userData, setUserData] = useState(null); // State to hold user data
+
+  // Fetch user profile from Firestore
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (auth.currentUser) {
+        const userDocRef = doc(db, "users", auth.currentUser.uid); // Reference to the user document
+        const userDocSnap = await getDoc(userDocRef); // Get the document snapshot
+
+        if (userDocSnap.exists()) {
+          setUserData(userDocSnap.data()); // Set the user data to state
+        } else {
+          console.log("No such user document!");
+        }
+      }
+    };
+
+    fetchUserProfile();
+  }, []); // Empty dependency array to run the effect only on component mount
 
   const renderContent = () => {
     switch (view) {
@@ -11,21 +31,38 @@ const StudentDashboard = () => {
         return (
           <section id="profile">
             <h2>My Profile</h2>
-            <div className="profile-card">
-              <h3>Profile Information</h3>
-              <div className="profile-info">
-                <p>
-                  <strong>Name:</strong> XYZ
-                </p>
-                <p>
-                  <strong>Email:</strong> {auth.currentUser.email}
-                </p>
-                <p>
-                  <strong>Skills:</strong> React.js, Node.js, Data Science
-                </p>
+            {userData ? (
+              <div className="profile-card">
+                <h3>Profile Information</h3>
+                <div className="profile-info">
+                  <p>
+                    <strong>Name:</strong> {userData.name}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {userData.email}
+                  </p>
+                  <p>
+                    <strong>Registration No.:</strong> {userData.registration}
+                  </p>
+                  <p>
+                    <strong>Branch:</strong> {userData.branch}
+                  </p>
+                  <p>
+                    <strong>Section:</strong> {userData.section}
+                  </p>
+                  <p>
+                    <strong>Year:</strong> {userData.year}
+                  </p>
+                  <p>
+                    <strong>Skills:</strong>{" "}
+                    {userData.skills || "Not specified"}
+                  </p>
+                </div>
+                <button className="profile-btn">Edit Profile</button>
               </div>
-              <button className="profile-btn">Edit Profile</button>
-            </div>
+            ) : (
+              <p>Loading profile...</p>
+            )}
           </section>
         );
       case "overview":

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Auth.css"; // CSS for both Sign In and Sign Up
 import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { loginwithemailandpassword } from "../../firebase/auth";
 
 const SignIn = () => {
