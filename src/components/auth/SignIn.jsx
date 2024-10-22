@@ -7,14 +7,21 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+
   async function handleSignIn(e) {
     e.preventDefault();
+    setError(""); // Reset error state before attempting sign-in
     try {
-      await loginwithemailandpassword(email, password);
-      Navigate("/dashboard");
+      const userCredential = await loginwithemailandpassword(email, password);
+      console.log(userCredential);
+
+      if (!userCredential || !userCredential.user) {
+        throw new Error("User credential is undefined");
+      }
+      navigate("/dashboard");
     } catch (error) {
-      setError(error.message);
+      setError("Invalid email or password. Please try again.");
     }
   }
 
