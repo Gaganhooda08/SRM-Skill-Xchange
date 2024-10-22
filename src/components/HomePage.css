@@ -3,7 +3,7 @@
 }
 
 .hero {
-  background-image: url("src/assets/srmImage.jpg");
+  background-image: url("../assets/srmImage.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   color: rgb(0, 0, 0);
