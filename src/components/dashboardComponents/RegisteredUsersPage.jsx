@@ -41,7 +41,6 @@ const RegisteredUsersPage = () => {
         setLoading(false);
       }
     };
-
     fetchUsers();
   }, []);
 
@@ -63,7 +62,7 @@ const RegisteredUsersPage = () => {
         placeholder="Search by name, skills, or registration no..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="search-input"
+        className="search-input modern-input"
       />
       {loading && <p>Loading users...</p>}
       {error && <p className="error">{error}</p>}

@@ -19,7 +19,12 @@ export const signupwithemailandpassword = async (email, password) => {
 
 export const loginwithemailandpassword = async (email, password) => {
   try {
-    signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    return userCredential;
   } catch (error) {
     throw new Error(error.message);
   }

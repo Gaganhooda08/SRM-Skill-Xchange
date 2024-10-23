@@ -14,13 +14,13 @@ const SignIn = () => {
     setError(""); // Reset error state before attempting sign-in
     try {
       const userCredential = await loginwithemailandpassword(email, password);
-      console.log(userCredential);
-
+      console.log("User Credential: ", userCredential); // Check the userCredential
       if (!userCredential || !userCredential.user) {
         throw new Error("User credential is undefined");
       }
       navigate("/dashboard");
     } catch (error) {
+      console.error("Sign-in Error: ", error); // Log error details
       setError("Invalid email or password. Please try again.");
     }
   }

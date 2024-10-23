@@ -5,6 +5,8 @@ import "./ProfileCard.css";
 import SkillTag from "./SkillTag";
 
 const ProfileCard = ({ userData, uid }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedData, setEditedData] = useState(userData);
   const [newSkill, setNewSkill] = useState("");
   const [skills, setSkills] = useState(
     Array.isArray(userData?.skills) ? userData.skills : []
@@ -71,41 +73,115 @@ const ProfileCard = ({ userData, uid }) => {
     }
   };
 
-  useEffect(() => {
-    console.log("coffeeLink state:", coffeeLink);
-  }, [coffeeLink]);
+  const handleEditProfile = async () => {
+    const userRef = doc(db, "users", uid);
+    try {
+      await updateDoc(userRef, editedData);
+      console.log("Profile updated successfully");
+      setIsEditing(false);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
   return (
     <div className="profile-card">
       <h3>Profile Information</h3>
-      <div className="profile-info">
-        <p>
-          <strong>Name:</strong> {userData.name}
-        </p>
-        <p>
-          <strong>Email:</strong> {userData.email}
-        </p>
-        <p>
-          <strong>Registration No.:</strong> {userData.registration}
-        </p>
-        <p>
-          <strong>Branch:</strong> {userData.branch}
-        </p>
-        <p>
-          <strong>Section:</strong> {userData.section}
-        </p>
-        <p>
-          <strong>Year:</strong> {userData.year}
-        </p>
-        <div>
-          <strong>Skills:</strong>{" "}
-          {skills.length > 0
-            ? skills.map((skill, index) => (
-                <SkillTag key={index} skill={skill} />
-              ))
-            : "Not specified"}
+      {isEditing ? (
+        <div className="profile-info-edit">
+          <input
+            type="text"
+            name="name"
+            value={editedData.name}
+            onChange={handleInputChange}
+            placeholder="Name"
+            className="edit-input"
+          />
+          <input
+            type="email"
+            name="email"
+            value={editedData.email}
+            onChange={handleInputChange}
+            placeholder="Email"
+            className="edit-input"
+          />
+          <input
+            type="text"
+            name="registration"
+            value={editedData.registration}
+            onChange={handleInputChange}
+            placeholder="Registration No."
+            className="edit-input"
+          />
+          <input
+            type="text"
+            name="branch"
+            value={editedData.branch}
+            onChange={handleInputChange}
+            placeholder="Branch"
+            className="edit-input"
+          />
+          <input
+            type="text"
+            name="section"
+            value={editedData.section}
+            onChange={handleInputChange}
+            placeholder="Section"
+            className="edit-input"
+          />
+          <input
+            type="text"
+            name="year"
+            value={editedData.year}
+            onChange={handleInputChange}
+            placeholder="Year"
+            className="edit-input"
+          />
+          <button className="save-profile-btn" onClick={handleEditProfile}>
+            Save Profile
+          </button>
+          <button
+            className="cancel-edit-btn"
+            onClick={() => setIsEditing(false)}
+          >
+            Cancel
+          </button>
         </div>
-      </div>
+      ) : (
+        <div className="profile-info">
+          <p>
+            <strong>Name:</strong> {userData.name}
+          </p>
+          <p>
+            <strong>Email:</strong> {userData.email}
+          </p>
+          <p>
+            <strong>Registration No.:</strong> {userData.registration}
+          </p>
+          <p>
+            <strong>Branch:</strong> {userData.branch}
+          </p>
+          <p>
+            <strong>Section:</strong> {userData.section}
+          </p>
+          <p>
+            <strong>Year:</strong> {userData.year}
+          </p>
+          <div>
+            <strong>Skills:</strong>{" "}
+            {skills.length > 0
+              ? skills.map((skill, index) => (
+                  <SkillTag key={index} skill={skill} />
+                ))
+              : "Not specified"}
+          </div>
+        </div>
+      )}
       <button
         className="toggle-skill-btn"
         onClick={() => setShowAddSkill((prev) => !prev)}
@@ -138,10 +214,8 @@ const ProfileCard = ({ userData, uid }) => {
           <div className="link-inputs">
             <input
               type="text"
-              value={socialLinks.coffeeLink}
-              onChange={(e) =>
-                setSocialLinks({ ...socialLinks, coffeeLink: e.target.value })
-              }
+              value={coffeeLink}
+              onChange={(e) => setCoffeeLink(e.target.value)}
               placeholder="Buy Me a Coffee link"
               className="link-input"
             />
@@ -187,7 +261,9 @@ const ProfileCard = ({ userData, uid }) => {
           </button>
         </div>
       )}
-      <button className="profile-btn">Edit Profile</button>
+      <button className="profile-btn" onClick={() => setIsEditing(true)}>
+        Edit Profile
+      </button>
     </div>
   );
 };

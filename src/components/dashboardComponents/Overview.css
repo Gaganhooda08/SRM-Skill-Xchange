@@ -49,3 +49,59 @@
   font-size: 1.2rem; /* Size of the values */
   color: #333; /* Dark text for readability */
 }
+/* Overview.css */
+.overview-container {
+  padding: 20px;
+}
+
+.overview-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.overview-intro {
+  margin-bottom: 20px;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  flex: 1;
+}
+
+.stat-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.coming-soon {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #ffecb3;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.coming-soon-title {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.coming-soon-message {
+  font-size: 18px;
+  font-weight: bold;
+}
