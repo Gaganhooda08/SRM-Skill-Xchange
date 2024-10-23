@@ -15,7 +15,7 @@ SRM Skill Exchange is a platform for students to register, share their skills, a
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/srm-skill-exchange.git
+   git clone https://github.com/abuzarcodes/SRM-Skill-Xchange
    ```
 
 2. Install Dependencies
